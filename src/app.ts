@@ -26,7 +26,7 @@ export async function createApp(): Promise<NestExpressApplication> {
   app.useGlobalPipes(new CustomValidationPipe());
   app.useGlobalPipes(
     new ValidationPipe({
-      // whitelist: true,
+      whitelist: true,
       transform: true,
       transformOptions: {
         enableImplicitConversion: true
