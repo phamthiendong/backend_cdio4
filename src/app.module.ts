@@ -12,6 +12,8 @@ import { AuthModule } from './modules/auth/auth.module';
 import { CustomLogger } from './common/modules/logger/customerLogger.service';
 import { LoggerMiddleware } from './common/middlewares/middleware';
 import { MailModule } from './common/modules/mail/mail.module';
+import { SepayModule } from './modules/sepay/sepay.module';
+import { Payment } from './modules/sepay/entities/payment.entity';
 
 console.log({
   type: 'mysql',
@@ -39,14 +41,14 @@ console.log({
       username: process.env.DATABASE_USERNAME || 'root',
       password: process.env.DATABASE_PASSWORD || 'root',
       database: process.env.DATABASE_DATABASE || 'test',
-      entities: [User],
+      entities: [User, Payment],
       logging: true,
       synchronize: true
     }),
     TypeOrmModule.forFeature([]),
 
     MailModule,
-
+    SepayModule,
     UserModule,
     AuthModule
   ],
