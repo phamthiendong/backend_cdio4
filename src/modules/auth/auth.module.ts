@@ -17,9 +17,7 @@ import { UserModule } from '../users/user.module';
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
         secret: configService.get<string>('ACCESS_TOKEN_SECRET'),
-        signOptions: {
-          expiresIn: configService.get<string>('ACCESS_TOKEN_EXPIRATION') || '1h'
-        }
+        signOptions: { expiresIn: Number(configService.get<string>('ACCESS_TOKEN_EXPIRATION')?.replace('h', '')) * 3600 || 3600 }
       }),
       inject: [ConfigService]
     })

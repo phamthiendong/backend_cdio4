@@ -14,6 +14,10 @@ import { LoggerMiddleware } from './common/middlewares/middleware';
 import { MailModule } from './common/modules/mail/mail.module';
 import { SepayModule } from './modules/sepay/sepay.module';
 import { Payment } from './modules/sepay/entities/payment.entity';
+import { GeminiModule } from './modules/gemini/gemini.module';
+import { ApprovedContent } from './modules/gemini/entities/approved_content.entity';
+import { PendingContent } from './modules/gemini/entities/pending-content.entity';
+import { RejectedContent } from './modules/gemini/entities/rejected-content.entity';
 
 console.log({
   type: 'mysql',
@@ -41,7 +45,7 @@ console.log({
       username: process.env.DATABASE_USERNAME || 'root',
       password: process.env.DATABASE_PASSWORD || 'root',
       database: process.env.DATABASE_DATABASE || 'test',
-      entities: [User, Payment],
+      entities: [User, Payment, ApprovedContent, PendingContent, RejectedContent],
       logging: true,
       synchronize: true
     }),
@@ -50,7 +54,8 @@ console.log({
     MailModule,
     SepayModule,
     UserModule,
-    AuthModule
+    AuthModule,
+    GeminiModule
   ],
   controllers: [AppController],
   providers: [ConfigService, CustomLogger]

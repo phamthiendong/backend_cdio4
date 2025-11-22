@@ -15,7 +15,7 @@ import { addTransactionalDataSource } from 'typeorm-transactional';
         port: configService.get('DATABASE_PORT') || 3306,
         username: configService.get('DATABASE_USER') || 'root',
         password: configService.get('DATABASE_PASSWORD') || 'root',
-        database: process.env.DATABASE_DATABASE || 'test',
+        database: configService.get('DATABASE_DATABASE') || 'test',
         entities: [User, Payment, Comment],
         logging: true,
         timezone: 'Z',
